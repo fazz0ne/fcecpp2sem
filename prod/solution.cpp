@@ -1,6 +1,7 @@
 #include "solution.h"
 
 #include <iostream>
+#include <stdexcept>
 
 // Логика поиска решения
 bool Solution::FindChain(std::vector<Domino>& unused, DoublyLinkedList& chain) {
@@ -41,7 +42,16 @@ bool Solution::FindChain(std::vector<Domino>& unused, DoublyLinkedList& chain) {
 
 void Solution::SolveDominoes(const std::vector<std::string>& input) {
     std::vector<Domino> unused;
+
     for (int i = 0; i < input.size(); i++) {
+        for (int j = 0; j < input[i].size(); j++) {
+            if (!std::isdigit(input[i][j])) {
+                throw std::invalid_argument("Не цифра в костяшке" + input[i]);
+            }
+        }
+        if (input[i].length() != 2) {
+            throw std::invalid_argument("Костяшка " + input[i] + " должна состоять из двух цифр");
+        }
         unused.push_back({std::stoi(std::string(1, input[i][0])), std::stoi(std::string(1, input[i][1]))});
     }
 
@@ -68,6 +78,4 @@ void Solution::SolveDominoes(const std::vector<std::string>& input) {
         }
         chain.PopBack();
     }
-
-    std::cout << "некорректные входные данные\n";
 }

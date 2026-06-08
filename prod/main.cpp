@@ -1,8 +1,8 @@
-#include <iostream>
-
 #include "correct_number.h"
 #include "io.h"
 #include "solution.h"
+
+#include <iostream>
 
 int main() {
     std::vector<std::string> data;
@@ -22,10 +22,12 @@ int main() {
                 break;
             }
             case 2: {
+                IO::Output(data);
                 IO::ToDelete(data);
                 break;
             }
             case 3: {
+                IO::Output(data);
                 IO::Change(data);
                 break;
             }
@@ -39,12 +41,19 @@ int main() {
             }
             case 6: {
                 try {
-                    Solution::SolveDominoes(data);
+                    if (data.empty())
+                        std::cout << "Данные не введены\n";
+                    else {
+                        Solution::SolveDominoes(data);
+                    }
                 }
                 catch (const std::invalid_argument& e) {
                     std::cout << e.what() << std::endl;
                 }
                 break;
+            }
+            default: {
+                std::cout << "Пункт отсутствует\n";
             }
         }
     } while (choice!=0);

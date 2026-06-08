@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 class IO {
 public:
     static void Input(std::vector<std::string> &in);

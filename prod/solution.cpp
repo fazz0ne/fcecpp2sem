@@ -47,7 +47,8 @@ void Solution::SolveDominoes(const std::vector<std::string>& input) {
 
     for (int i = 0; i < input.size(); i++) {
         CorrectDomino::Check(input[i]);
-        unused.push_back({std::stoi(std::string(1, input[i][0])), std::stoi(std::string(1, input[i][1]))});
+        unused.push_back({std::stoi(std::string(1, input[i][0])),
+            std::stoi(std::string(1, input[i][1]))});
     }
 
     DoublyLinkedList chain;
@@ -73,4 +74,5 @@ void Solution::SolveDominoes(const std::vector<std::string>& input) {
         }
         chain.PopBack();
     }
+    std::cout << "Нельзя\n";
 }

@@ -37,7 +37,6 @@ void IO::Output(std::vector<std::string> &out) {
 
 void IO::ToDelete(std::vector<std::string> &d) {
     if (d.empty()) {
-        std::cout << "Не введены данные\n";
         return;
     }
     int number_to_delete;
@@ -49,17 +48,17 @@ void IO::ToDelete(std::vector<std::string> &d) {
 
 void IO::Change(std::vector<std::string> &d) {
     if (d.empty()) {
-        std::cout << "Не введены данные\n";
         return;
     }
     int number_to_change;
     std::string new_value;
     std::cout << "Введите номер: ";
     CorrectNumber::FineNumFrames(number_to_change,1, d.size());
-    std::cout << "Введите новое значение";
+    std::cout << "Введите новое значение: ";
+    std::cin >> new_value;
     try {
         CorrectDomino::Check(new_value);
-        std::cout << d[number_to_change-1] << "Изменен на " << new_value << std::endl;
+        std::cout << d[number_to_change-1] << " Изменен на " << new_value << std::endl;
         d[number_to_change-1] = new_value;
     }
     catch (const std::invalid_argument& e) {
@@ -69,15 +68,21 @@ void IO::Change(std::vector<std::string> &d) {
 
 void IO::InputFromFile(std::vector<std::string> &in) {
     std::ifstream file("data.txt");
-
+    int len = in.size();
     if (!file.is_open()) {
-        std::cout << "Ошибка: Не удалось открыть файл 'data.txt'. Проверьте, существует ли он в папке с программой.\n";
+        std::cout << "Ошибка: Не удалось открыть файл 'data.txt'. "
+                     "Проверьте, существует ли он в папке с программой.\n";
     } else {
         std::string piece;
         while (file >> piece) {
             in.push_back(piece);
         }
-        std::cout << "Успешно загружено\n";
+        if (in.size() != len) {
+            std::cout << "Успешно загружено\n";
+        }
+        else {
+            std::cout << "Ничего не добавлено\n";
+        }
         file.close();
     }
 

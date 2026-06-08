@@ -12,13 +12,14 @@ Domino Domino::Reverse() const {
 // Конструктор Node
 Node::Node(Domino val) : data(val), next(nullptr), prev(nullptr) {}
 
-// Методы DoublyLinkedList
+// Инициация DoublyLinkedList
 DoublyLinkedList::DoublyLinkedList() : head_(nullptr), tail_(nullptr) {}
 
 DoublyLinkedList::~DoublyLinkedList() {
   Clear();
 }
 
+//Добавление в конец
 void DoublyLinkedList::PushBack(Domino val) {
   Node* new_node = new Node(val);
   if (!head_) {
@@ -30,6 +31,7 @@ void DoublyLinkedList::PushBack(Domino val) {
   }
 }
 
+//Удаление из конца
 void DoublyLinkedList::PopBack() {
   if (!tail_) return;
   Node* temp = tail_;
@@ -42,6 +44,8 @@ void DoublyLinkedList::PopBack() {
   delete temp;
 }
 
+
+//Добавление в начало
 void DoublyLinkedList::PushFront(Domino val) {
   Node* new_node = new Node(val);
   if (!head_) {
@@ -53,6 +57,7 @@ void DoublyLinkedList::PushFront(Domino val) {
   }
 }
 
+//Удаление с начала
 void DoublyLinkedList::PopFront() {
   if (!head_) return;
   Node* temp = head_;
@@ -69,6 +74,8 @@ bool DoublyLinkedList::IsEmpty() const { return head_ == nullptr; }
 Node* DoublyLinkedList::GetHead() const { return head_; }
 Node* DoublyLinkedList::GetTail() const { return tail_; }
 
+
+//Вывод элементов
 void DoublyLinkedList::Print() const {
   Node* current = head_;
   while (current) {
@@ -79,6 +86,7 @@ void DoublyLinkedList::Print() const {
   std::cout << std::endl;
 }
 
+//Очищение
 void DoublyLinkedList::Clear() {
   while (!IsEmpty()) {
     PopBack();

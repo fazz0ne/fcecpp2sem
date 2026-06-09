@@ -14,6 +14,7 @@ int main() {
                      "4. Загрузить из файла data.txt\n"
                      "5. Вывести костяшки\n"
                      "6. Проверить, можно ли выложить в ряд\n"
+                     "0. Выход\n"
                      "Выбор: ";
         CorrectNumber::FineNum(choice);
         switch (choice) {
@@ -50,6 +51,10 @@ int main() {
                 catch (const std::invalid_argument& e) {
                     std::cout << e.what() << std::endl;
                 }
+                break;
+            }
+            case 0: {
+                std::cout << "Выход\n";
                 break;
             }
             default: {
